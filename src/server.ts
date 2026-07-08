@@ -1,3 +1,4 @@
+import { error } from "node:console";
 import { app } from "./app.js";
 import { connectToDatabase } from "./config/database.js";
 import { PORT } from "./config/env.js";
@@ -10,4 +11,7 @@ async function startServer() {
 }
 
 
-startServer();
+startServer().catch((error) => {
+  console.error('[Server]: Something went wrong', error)
+  process.exit(1)
+});
