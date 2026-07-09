@@ -2,6 +2,7 @@ import express from "express";
 import type { Request, Response, Express } from "express";
 import userRouter from "./routes/user.routes.js";
 import { errorHandler } from "./middleware/error-handler.js";
+import { routeNotFound } from "./middleware/route-not-found.js";
 
 export const app: Express = express();
 
@@ -17,4 +18,5 @@ app.get("/health", (_req: Request, res: Response) => {
 
 
 
+app.use(routeNotFound);
 app.use(errorHandler);
